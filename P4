@@ -1,0 +1,56 @@
+import java.util.Scanner;
+import java.math.BigInteger;
+
+public class DataTypeFitter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int t = Integer.parseInt(scanner.nextLine());
+
+        BigInteger byteMin = BigInteger.valueOf(Byte.MIN_VALUE);
+        BigInteger byteMax = BigInteger.valueOf(Byte.MAX_VALUE);
+        BigInteger shortMin = BigInteger.valueOf(Short.MIN_VALUE);
+        BigInteger shortMax = BigInteger.valueOf(Short.MAX_VALUE);
+        BigInteger intMin = BigInteger.valueOf(Integer.MIN_VALUE);
+        BigInteger intMax = BigInteger.valueOf(Integer.MAX_VALUE);
+        BigInteger longMin = BigInteger.valueOf(Long.MIN_VALUE);
+        BigInteger longMax = BigInteger.valueOf(Long.MAX_VALUE);
+
+        for (int i = 0; i < t; i++) {
+            String value = scanner.nextLine();
+            try {
+                BigInteger num = new BigInteger(value);
+                boolean canFit = false;
+                StringBuilder output = new StringBuilder();
+
+                if (num.compareTo(byteMin) >= 0 && num.compareTo(byteMax) <= 0) {
+                    output.append("* byte\n");
+                    canFit = true;
+                }
+                if (num.compareTo(shortMin) >= 0 && num.compareTo(shortMax) <= 0) {
+                    output.append("* short\n");
+                    canFit = true;
+                }
+                if (num.compareTo(intMin) >= 0 && num.compareTo(intMax) <= 0) {
+                    output.append("* int\n");
+                    canFit = true;
+                }
+                if (num.compareTo(longMin) >= 0 && num.compareTo(longMax) <= 0) {
+                    output.append("* long\n");
+                    canFit = true;
+                }
+
+                if (canFit) {
+                    System.out.print(value + " can be fitted in:\n" + output);
+                } else {
+                    System.out.println(value + " can't be fitted anywhere.");
+                }
+
+            } catch (Exception e) {
+                System.out.println(value + " can't be fitted anywhere.");
+            }
+        }
+
+        scanner.close();
+    }
+}
+
