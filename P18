@@ -1,0 +1,32 @@
+import java.text.NumberFormat;
+import java.util.*;
+
+public class CurrencyFormatter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double payment = scanner.nextDouble();
+        scanner.close();
+
+        Locale us = Locale.US;
+        Locale india = new Locale("en", "IN");
+        Locale china = Locale.CHINA;
+        Locale france = Locale.FRANCE;
+
+        NumberFormat usFormat = NumberFormat.getCurrencyInstance(us);
+        NumberFormat indiaFormat = NumberFormat.getCurrencyInstance(india);
+        NumberFormat chinaFormat = NumberFormat.getCurrencyInstance(china);
+        NumberFormat franceFormat = NumberFormat.getCurrencyInstance(france);
+
+        
+        String usOutput = "US: " + usFormat.format(payment);
+        String indiaOutput = "India: " + indiaFormat.format(payment).replace("\u20B9", "Rs.");
+        String chinaOutput = "China: " + chinaFormat.format(payment).replace("\u00A5", "\uFFE5");
+        String franceOutput = "France: " + franceFormat.format(payment).replace("\u20AC", "\u20AC");
+
+        System.out.println(usOutput);
+        System.out.println(indiaOutput);
+        System.out.println(chinaOutput);
+        System.out.println(franceOutput);
+    }
+}
+
